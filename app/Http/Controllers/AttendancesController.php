@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Pet;
 use Illuminate\Http\Request;
+use Exception;
 
 class AttendancesController extends Controller
 {
@@ -111,4 +113,37 @@ class AttendancesController extends Controller
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+
+    /*
+        Inserçāo de um atendimento, juntamente com o cadastro do Pet
+        @params $request
+    */
+    public function insert(Request $request)
+    {
+        try
+        {
+            $request->validate([
+                'name'      => 'required|min:2|max:255',
+                'species'   => 'required',
+            ]);
+
+            $pet = Pet::create([
+                'name'      => $request->input('name'),
+                'species'   => $request->input('species'),
+            ]);
+
+            $attendance = Attendance::create([
+                'id_pet'            => $pet['id'],
+                'date_attendance'   => $request->input('date_attendance'),
+                'description'       => $request->input('description'),
+            ]);
+
+            return $attendance;
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use Illuminate\Http\Request;
+use Exception;
 
 class PetsController extends Controller
 {
@@ -13,7 +14,14 @@ class PetsController extends Controller
     */
     public function index()
     {
-    	return Pet::paginate(10);
+    	try
+        {
+            return Pet::paginate(10);
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     /*
@@ -22,18 +30,24 @@ class PetsController extends Controller
     */
     public function store(Request $request)
     {
-    	$request->validate([
-    		'name' 		=> 'required|min:2|max:255',
-    		'species'	=> 'required',
-    	]);
+    	try
+        {
+            $request->validate([
+                'name'      => 'required|min:2|max:255',
+                'species'   => 'required',
+            ]);
 
-    	$pet = Pet::create([
-    		'name' 		=> $request->input('name'),
-    		'species'	=> $request->input('species'),
-    	]);
+            $pet = Pet::create([
+                'name'      => $request->input('name'),
+                'species'   => $request->input('species'),
+            ]);
 
-		return $pet;
-
+            return $pet;
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     /*
@@ -42,7 +56,14 @@ class PetsController extends Controller
     */
     public function show(Pet $pet)
     {
-    	return $pet;
+    	try
+        {
+            return $pet;
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     /*
@@ -51,16 +72,32 @@ class PetsController extends Controller
     */
     public function showName(Pet $pet, $name)
     {
-        return Pet::where('name', 'like', '%'.$name.'%')->paginate(10);
+        try
+        {
+            return Pet::where('name', 'like', '%'.$name.'%')->paginate(10);
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function update(Request $request, Pet $pet)
     {
-    	$pet->name     = $request->input('name');
-        $pet->species  = $request->input('species');
-    	$pet->save();
+    	try
+        {
+            $pet->name     = $request->input('name');
+            $pet->species  = $request->input('species');
+            $pet->save();
 
-    	return $pet;
+            return $pet;
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+
+    	
     }
 
     /*

@@ -22,6 +22,7 @@ Route::delete("pets/{pet}", "App\Http\Controllers\PetsController@delete");
 
 Route::get("attendance", "App\Http\Controllers\AttendancesController@index");
 Route::post("attendance", "App\Http\Controllers\AttendancesController@store");
+Route::post("attendance/pet", "App\Http\Controllers\AttendancesController@insert");
 Route::get("attendance/{name?}", "App\Http\Controllers\AttendancesController@show");
 Route::patch("attendance/{attendance}", "App\Http\Controllers\AttendancesController@update");
 Route::delete("attendance/{attendance}", "App\Http\Controllers\AttendancesController@delete");

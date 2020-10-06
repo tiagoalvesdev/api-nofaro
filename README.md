@@ -43,7 +43,8 @@
 
 Method      | URI                                      	| Action
 ----------- | ---------------------------------------- 	| --------------------------------------------------
-POST     	| api/attendance              			   	| App\Http\Controllers\AttendancesController@store  	
+POST     	| api/attendance              			   	| App\Http\Controllers\AttendancesController@store 
+POST     	| api/attendance/pet          				| App\Http\Controllers\AttendancesController@insert 	
 GET HEAD 	| api/attendance              				| App\Http\Controllers\AttendancesController@index  
 PATCH    	| api/attendance/{attendance}      			| App\Http\Controllers\AttendancesController@update 
 DELETE   	| api/attendance/{attendance}				| App\Http\Controllers\AttendancesController@delete 
