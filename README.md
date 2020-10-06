@@ -55,13 +55,15 @@ GET HEAD 	| api/pets/{name?}            				| App\Http\Controllers\PetsControlle
 PATCH    	| api/pets/{pet}              				| App\Http\Controllers\PetsController@update        
 DELETE   	| api/pets/{pet}              				| App\Http\Controllers\PetsController@delete
 
+## Documentação
 
-- Testes no Postman
+- Documentação das rotas/métodos [neste link](https://documenter.getpostman.com/view/12479411/TVRha8MB)
+
+	- Caso utilize o **Postman** para realizar os testes, você pode baixar este [arquivo json](https://drive.google.com/file/d/195iS4ctq8Kn2JczzQlqHSlomuhQnZ_v6/view?usp=sharing) e upar na ferramenta e obter todos os rotas ja configuradas.
+
+- Testes
 	- Os testes realizados nas rotas, foram com o [Postman](https://www.postman.com/)
 
 	- Para os parametros dos métodos POST
 		- Inseri os dados em *Body* e *x-www-form-urlencoded*
 
-- Documentação das rotas/metodos [neste link](https://documenter.getpostman.com/view/12479411/TVRha8MB)
-
-	- Caso utilize o **Postman** para realizar os testes, você pode baixar este [arquivo json](https://drive.google.com/file/d/195iS4ctq8Kn2JczzQlqHSlomuhQnZ_v6/view?usp=sharing) e upar na ferramenta e obter todos os rotas ja configuradas.
