@@ -36,6 +36,9 @@
 	- php artisan cache:clear
 	- composer dump-autoload
 
+- Gerando a key
+	- php artisan key:generate
+
 ## Rotas disponiveis no sistema
 
 Method      | URI                                      	| Action
