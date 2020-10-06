@@ -11,7 +11,7 @@
 - Clone o projeto
 	- git clone https://github.com/tiagoalvesdev/api-nofaro.git
 
-- Após o download, acesso o projeto
+- Após o download, acesse o projeto
 	- cd api-nofaro
 
 - Agora você precisa ajustar seu arquivo de conexāo com o banco (.env)
