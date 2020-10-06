@@ -56,12 +56,8 @@ class PetsController extends Controller
 
     public function update(Request $request, Pet $pet)
     {
-    	$request->validate([
-    		'name' 		=> 'required|min:2|max:255',
-    		'species'	=> 'required',
-    	]);
-
-    	$pet->name = $request->input('name');
+    	$pet->name     = $request->input('name');
+        $pet->species  = $request->input('species');
     	$pet->save();
 
     	return $pet;

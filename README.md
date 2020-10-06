@@ -1,61 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+api-nofaro
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Informações
 
-## About Laravel
+- Desenvolvido com PHP 7.3., Laravel Framework 8.8.0, MySQL 8.0;
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Preparando o Projeto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Crie uma base de dados com o nome de **base_nofaro**, ou com o nome de sua preferência.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Clone o projeto
+	- git clone https://github.com/tiagoalvesdev/api-nofaro.git
 
-## Learning Laravel
+- Após o download, acesso o projeto
+	- cd api-nofaro
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Agora você precisa ajustar seu arquivo de conexāo com o banco (.env)
+	- cp .env.example .env
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Abra o arquivo **.env** e altere o valor da váriavel DB_DATABASE para **base_nofaro**, ou o nome que escolheu para sua base e salve o arquivo
+	- DB_DATABASE=base_nofaro
 
-## Laravel Sponsors
+- Instale o composer
+	- composer install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Agora vamos preparar as informações da nossa base, utilizando **migration** e **seeds**
+	- php artisan migrate
+	- php artisan db:seed
 
-### Premium Partners
+## Iniciando a aplicação
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+- Agora iremos subir a aplicação. Após a execução do comando abaixo, você deverá acessar seu nevegador e na URL digitar http://127.0.0.1:8000/
+	- php artisan serve
 
-## Contributing
+- Agora com nossa aplicação funcionando, iremos executar a limpeza de cache e o autoload de nossa aplicação
+	- php artisan cache:clear
+	- composer dump-autoload
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Rotas disponiveis no sistema
 
-## Code of Conduct
+Method      | URI                                      	| Action
+----------- | ---------------------------------------- 	| --------------------------------------------------
+POST     	| api/attendance              			   	| App\Http\Controllers\AttendancesController@store  	
+GET|HEAD 	| api/attendance              				| App\Http\Controllers\AttendancesController@index  
+PATCH    	| api/attendance/{attendance}      			| App\Http\Controllers\AttendancesController@update 
+DELETE   	| api/attendance/{attendance}				| App\Http\Controllers\AttendancesController@delete 
+GET|HEAD 	| api/attendance/{name?}					| App\Http\Controllers\AttendancesController@show   
+GET|HEAD 	| api/pets 									| App\Http\Controllers\PetsController@index         
+POST     	| api/pets                    				| App\Http\Controllers\PetsController@store         
+GET|HEAD 	| api/pets/{name?}            				| App\Http\Controllers\PetsController@showName      
+PATCH    	| api/pets/{pet}              				| App\Http\Controllers\PetsController@update        
+DELETE   	| api/pets/{pet}              				| App\Http\Controllers\PetsController@delete
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+- Testes no Postman
+	- Os testes realizados nas rotas, foram com o [Postman](https://www.postman.com/)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+	- Para os parametros dos métodos POST
+		- Inseri os dados em *Body* e *x-www-form-urlencoded*
 
-## License
+- Documentação das rotas/metodos [neste link](https://documenter.getpostman.com/view/12479411/TVRha8MB)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+	- Caso utilize o **Postman** para relizar os testes, você pode baixar este [arquivo json](https://drive.google.com/file/d/195iS4ctq8Kn2JczzQlqHSlomuhQnZ_v6/view?usp=sharing) e upar na ferramenta e obter todos os rotas ja configuradas.
